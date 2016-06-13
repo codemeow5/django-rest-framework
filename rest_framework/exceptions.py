@@ -90,9 +90,12 @@ class AuthenticationFailed(APIException):
 
 
 class NotAuthenticated(APIException):
-    status_code = status.HTTP_401_UNAUTHORIZED
+    status_code = status.HTTP_461_CREDENTIALS_NOT_PROVIDED
     default_detail = _('Authentication credentials were not provided.')
 
+class SignatureHasExpired(APIException):
+    status_code = status.HTTP_460_SIGNATURE_HAS_EXPIRED
+    default_detail = _('Signature has expired.')
 
 class PermissionDenied(APIException):
     status_code = status.HTTP_403_FORBIDDEN
