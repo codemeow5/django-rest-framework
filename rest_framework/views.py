@@ -307,7 +307,10 @@ class APIView(View):
         will instead be performed lazily, the first time either
         `request.user` or `request.auth` is accessed.
         """
-        request.user
+        for permission in self.get_permissions():
+            if not permission.has_permission(request, self):
+                request.user
+        #request.user
 
     def check_permissions(self, request):
         """
